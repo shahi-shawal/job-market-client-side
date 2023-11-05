@@ -1,11 +1,12 @@
+import Banner from "../../Components/Shared/Banner/Banner";
 import Navbar from "../../Components/Shared/Navbar";
 
 
 const Home = () => {
     return (
-        <div>
+        <div className="bg-[#E8F6F1]">
             <Navbar></Navbar>
-            <h1>This is Home</h1>
+            <Banner></Banner>
         </div>
     );
 };
