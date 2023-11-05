@@ -11,7 +11,7 @@ const Banner = () => {
           <img src={banner} className="max-w-xl rounded-lg" />
           <div>
             <h1 className="text-5xl font-bold text-[#009868]">
-              Your Job Here{" "}
+              Your Job Here
             </h1>
             <p className="py-6 text-6xl font-bold text-[#05264E]">
               Discover & Find Your <br></br>
@@ -24,7 +24,7 @@ const Banner = () => {
                   placeholder="Search Here"
                   className="input input-bordered border-[#009868]"
                 />
-                <span className="bg-[#009868] text-white">Find Job</span>
+                <button className="bg-[#009868] text-white btn">Find Job</button>
               </label>
             </div>
             <div className="flex flex-row gap-3 items-center mt-6">

@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
 import logo from "../../assets/Images/logo.png"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
       const [fix, setfix] = useState(false)
+      const {user}= useContext(AuthContext)
       const strick= ()=>{
          if (window.scrollY >=150) {
           setfix(true)
@@ -17,15 +19,23 @@ const Navbar = () => {
         console.log("hello");
         window.addEventListener("scroll",strick)
       }, []);
+
+      const handellogOut=()=>{
+        
+      }
       
     const navlinks = <>
        
        <NavLink  to="/"><li><a>Home</a></li></NavLink>
        <NavLink to="/blog"><li><a>Blogs</a></li></NavLink>
-       <NavLink to="/alljobs"><li><a>All Jobs</a></li></NavLink>
+       {
+        user && <>
+        <NavLink to="/alljobs"><li><a>All Jobs</a></li></NavLink>
        <NavLink to="/myjobs"><li><a>My Jobs</a></li></NavLink>
        <NavLink to="/appliedjobs"><li><a>Applied Jobs</a></li></NavLink>
        <NavLink to="/addjob"><li><a>Add a job</a></li></NavLink>
+       </>
+       }
     </>
     return (
         <div>
@@ -53,7 +63,35 @@ const Navbar = () => {
       </div>
       </div>
       <div className="navbar-end px-6">
-        <button className="btn bg-[#1CA774] text-white font-bold hover:bg-[#1CA774]">Login</button>
+      {
+      user? <>
+       <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img src={user?.photoURL? user.photoURL : "None"} />
+        </div>
+      </label>
+      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#1CA774] rounded-box w-52 text-white font-bold">
+        <li>
+          <a className="justify-between">
+            {
+              user?.displayName? user.displayName :"Your Name"
+            }
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li onClick={handellogOut} ><a>Logout</a></li>
+      </ul>
+    </div>
+   
+
+      </>
+      :
+      <Link to="/login">
+    <Link to="/login"> <button className="btn bg-[#1CA774] text-white font-bold hover:bg-[#1CA774]">Login</button></Link>
+    </Link>
+    }
+       
       </div>
     </div>
   </div> 
