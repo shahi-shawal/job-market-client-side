@@ -77,7 +77,7 @@ const Login = () => {
           <div className="card flex-shrink-0 w-full max-w-xl bg-base-100">
             <form onSubmit={handelLogin} className="w-96 p-5">
                 <div className="text-center">
-                <p className="mb-4">You Don't have an Account?</p>
+                <p className="mb-4">You Dont have an Account?</p>
                 <Link to="/signup"><button className="btn bg-base-200 text-[#009868] hover:bg-[#1CA774] hover:text-white mb-6">Create Your Account</button></Link>
                 </div>
                 <hr></hr>
