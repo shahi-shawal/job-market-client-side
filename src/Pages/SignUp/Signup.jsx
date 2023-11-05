@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 
 const Signup = () => {
 
-
+    const navigate = useNavigate()
     const {createUser}= useContext(AuthContext)
 
 
@@ -43,12 +43,16 @@ const Signup = () => {
           displayName: name,
           photoURL:image
         })
-        .then(res=> console.log(res.user))
-        .catch(error=> console.log(error))
-
+        .then()
+        .catch()
+       
+        navigate("/")
+        return
     })
     .catch(error=>{
         console.error(error);
+        toast.error("Check your email and password")
+         return 
     })
     form.reset()
    }

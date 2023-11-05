@@ -35,11 +35,13 @@ const Login = () => {
     .then(result=>{
         console.log(result.user);
         navigate(location?.state? location.state :"/")
-        return  toast.success("Log in successfully")
+         toast.success("Log in successfully")
+         return
     })
     .catch(error=>{
         console.error(error);
-        return toast.error("Check your Email and Password")
+        toast.error("Check your Email and Password")
+        return
     })
     form.reset()
   }

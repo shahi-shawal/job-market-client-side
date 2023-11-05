@@ -3,16 +3,17 @@ import "./Navbar.css"
 import logo from "../../assets/Images/logo.png"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Toaster, toast } from "react-hot-toast";
 const Navbar = () => {
       const [fix, setfix] = useState(false)
-      const {user}= useContext(AuthContext)
+      const {user, logout}= useContext(AuthContext)
       const strick= ()=>{
          if (window.scrollY >=150) {
           setfix(true)
          }
          else{
           setfix(false)
-         }
+         }      
       }
 
       useEffect(() => {
@@ -21,7 +22,8 @@ const Navbar = () => {
       }, []);
 
       const handellogOut=()=>{
-        
+        logout()
+        toast.success("Log Out successfully")
       }
       
     const navlinks = <>
@@ -39,6 +41,7 @@ const Navbar = () => {
     </>
     return (
         <div>
+          <Toaster />
             <div className={`drawer ${fix}`}>
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
