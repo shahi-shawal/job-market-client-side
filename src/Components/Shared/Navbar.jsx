@@ -41,12 +41,13 @@ const Navbar = () => {
     </>
     return (
         <div>
-          <Toaster />
+          
             <div className={`drawer ${fix}`}>
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
     {/* Navbar */}
     <div className={`w-full navbar `}>
+    <Toaster />
       <div className="max-w-7xl mx-auto ">
       <div className="flex-none lg:hidden">
         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
