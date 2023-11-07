@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
-import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Myjobs = () => {
   const { user } = useContext(AuthContext);
@@ -23,14 +23,25 @@ const Myjobs = () => {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.deletedCount > 0) {
-            toast.success(" Deleted Your Job Post")
-        }
-        const remaing = jobsstate.filter((jobdelete)=> jobdelete._id !==_id)
-        setJobsState(remaing)
-        });
+Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((data) => {
+    if (data.deletedCount > 0) {
+    Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+    const remaing = jobsstate.filter((jobdelete)=> jobdelete._id !==_id)
+    setJobsState(remaing)
+  }
+});
 
   }
   return (
