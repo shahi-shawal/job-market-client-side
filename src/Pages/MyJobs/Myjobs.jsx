@@ -20,9 +20,8 @@ const Myjobs = () => {
     console.log(_id);
 
     fetch(`http://localhost:5000/jobs/${_id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
+        method: "DELETE",
+      })
 Swal.fire({
   title: "Are you sure?",
   text: "You won't be able to revert this!",
@@ -31,7 +30,10 @@ Swal.fire({
   confirmButtonColor: "#3085d6",
   cancelButtonColor: "#d33",
   confirmButtonText: "Yes, delete it!"
-}).then((data) => {
+}) 
+.then((res) => res.json())
+
+.then((data) => {
     if (data.deletedCount > 0) {
     Swal.fire({
       title: "Deleted!",

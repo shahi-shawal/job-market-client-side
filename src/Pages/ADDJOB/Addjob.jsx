@@ -12,8 +12,8 @@ const Addjob = () => {
 
     const {user}= useContext(AuthContext)
     console.log(user.displayName);
-    const [startDate, setStartDate] = useState(new Date());
-    const [deadlibeDate, setDeadtDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
+    // const [deadlibeDate, setDeadtDate] = useState(new Date());
     const handelAddjob=e=>{
         e.preventDefault()
         const form = e.target
@@ -23,8 +23,8 @@ const Addjob = () => {
         const jb_category= form.jb_category.value
         const salary_range= form.salary_range.value
         const jb_dsc= form.jb_dsc.value
-        const jb_post_date= startDate
-        const app_deadline = startDate
+        const jb_post_date= form.jb_post_date.value
+        const app_deadline = form.app_deadline.value
         const job_applicate_number= form.job_applocate_number.value
 
         const jobData ={job_title,salary_range,posted_name, job_applicate_number, jb_dsc,jb_category,jb_post_date,app_deadline, image}
@@ -146,23 +146,29 @@ const Addjob = () => {
                 <label className="label">
                   <span className="label-text">Job Posting Date</span>
                 </label>
-                <DatePicker  className="input input-bordered bg-gray-200"
-                  required selected={startDate} onChange={(date) => setStartDate(date)} />
-                {/* <input
+                {/* <DatePicker  className="input input-bordered bg-gray-200"
+                  required selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+                <input
                   type="date"
                   name="jb_post_date"
                   placeholder="Job Posting Date"
                   className="input input-bordered bg-gray-200"
                   required
-                /> */}
+                />
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Application Deadline</span>
                 </label>
-                <DatePicker  className="input input-bordered bg-gray-200"
-                  required selected={deadlibeDate} onChange={(date) => setDeadtDate(date)} />
-                
+                {/* <DatePicker  className="input input-bordered bg-gray-200"
+                  required selected={deadlibeDate} onChange={(date) => setDeadtDate(date)} /> */}
+                <input
+                  type="date"
+                  name="app_deadline"
+                  placeholder="Application Deadline"
+                  className="input input-bordered bg-gray-200"
+                  required
+                />
               </div>
               <div className="form-control">
                 <label className="label">

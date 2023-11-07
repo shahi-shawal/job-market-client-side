@@ -2,10 +2,22 @@ import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer/Footer";
 import img1 from "../../assets/Images/animatepng.png";
+import { useState } from "react";
 const Alljobs = () => {
     const alljobs= useLoaderData()
     console.log(alljobs);
+    const [jobs, setJobs]= useState(alljobs)
+   
     // const {job_title, salary_range}= alljobs
+    console.log(jobs);
+    const handelSearch=(e)=>{
+      e.preventDefault()
+      const search =e.target.searchInput.value 
+      console.log(search);
+     const searchjb = jobs.filter((jb)=> jb.job_title=== search)
+     setJobs(searchjb);
+     console.log(searchjb);
+    }
     return (
         <div>
             <Navbar></Navbar>
@@ -23,6 +35,17 @@ const Alljobs = () => {
           All Jobs
         </div>
       </div>
+      <div className="flex justify-center">
+      <div className="form-control mt-5 mb-6 flex">
+  <div className="input-group">
+    <form onSubmit={handelSearch}>
+    <input name="searchInput" type="text" placeholder="Search…" className="input input-bordered border-[#009868] " />
+    <input className="btn  bg-[#009868] hover:hover:bg-[#009868] text-white" type="submit" value="Serach" />
+    </form>
+    
+  </div>
+</div>
+      </div>
             <div className="overflow-x-auto mb-10">
   <table className="table table-zebra">
     {/* head */}
@@ -37,7 +60,7 @@ const Alljobs = () => {
     </thead>
     <tbody>
     {
-                    alljobs.map((jobtable)=> <tr key={jobtable.id}>
+                    jobs.map((jobtable)=> <tr key={jobtable.id}>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div>
