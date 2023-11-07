@@ -1,18 +1,38 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
+import { toast } from "react-hot-toast";
 
 const Myjobs = () => {
   const { user } = useContext(AuthContext);
   const myname = user.displayName;
   console.log(myname);
   const myjobs = useLoaderData();
+  const [jobsstate, setJobsState]= useState(myjobs)
   console.log(myjobs);
-  const myfilterJob = myjobs.filter((myjob) => myjob.posted_name === myname);
+  const myfilterJob = jobsstate.filter((myjob) => myjob.posted_name === myname);
   console.log(myfilterJob);
+
+  const handelDelete=(_id)=>{
+    console.log(_id);
+
+    fetch(`http://localhost:5000/jobs/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+            toast.success(" Deleted Your Job Post")
+        }
+        const remaing = jobsstate.filter((jobdelete)=> jobdelete._id !==_id)
+        setJobsState(remaing)
+        });
+
+  }
   return (
     <div>
       <Navbar></Navbar>
@@ -46,7 +66,7 @@ const Myjobs = () => {
                     Update
                   </button>
                   </Link>
-                  <button className="btn btn-error text-white hover:bg-[#1CA774]">
+                  <button onClick={()=>handelDelete(`${myj._id}`)} className="btn btn-error text-white hover:bg-[#1CA774]">
                     Delete
                   </button>
                 </div>

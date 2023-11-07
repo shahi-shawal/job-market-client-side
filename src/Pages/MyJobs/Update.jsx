@@ -5,12 +5,17 @@ import img1 from "../../assets/Images/animatepng.png";
 import { AuthContext } from "../../Provider/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLoaderData } from "react-router-dom";
+import { toast } from "react-hot-toast";
 // import { toast } from "react-hot-toast";
 
 const Update = () => {
     const {user}= useContext(AuthContext)
     console.log(user.displayName);
+    const updatedata = useLoaderData()
+    const {_id,job_title, image,jb_category, salary_range, jb_dsc,jb_post_date, app_deadline, job_applicate_number}= updatedata
     const [startDate, setStartDate] = useState(new Date());
+    const [deadlibeDate, setDeadtDate] = useState(new Date());
     const handelAddjob=e=>{
         e.preventDefault()
         const form = e.target
@@ -28,20 +33,20 @@ const Update = () => {
 
         console.log(jobData);
 
-        // fetch("http://localhost:5000/jobs", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(jobData),
-        // })
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     console.log(data);
-        //     if (data.insertedId) {
-        //        toast.success("Your Job Post successFully")
-        //     }
-        //   });
+        fetch(`http://localhost:5000/jobs/${_id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jobData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.modifiedCount) {
+               toast.success("Updated successFully")
+            }
+          });
       };
         
   return (
@@ -72,6 +77,7 @@ const Update = () => {
                   type="text"
                   name="job_title"
                   placeholder="JOB TITLE"
+                  defaultValue={job_title}
                   className="input input-bordered bg-gray-200"
                   required
                 />
@@ -97,6 +103,7 @@ const Update = () => {
                   type="text"
                   name="image"
                   placeholder="Image"
+                  defaultValue={image}
                   className="input input-bordered bg-gray-200"
                   required
                 />
@@ -106,8 +113,8 @@ const Update = () => {
                   name="jb_category"
                   className="select select-bordered w-full bg-gray-200"
                 >
-                  <option disabled selected>
-                    Job Category
+                  <option  disabled selected>
+                  {jb_category}
                   </option>
                   <option value="Onsite">Onsite</option>
                   <option value="Remote">Remote</option>
@@ -122,6 +129,7 @@ const Update = () => {
                 <input
                   type="number"
                   name="salary_range"
+                  defaultValue={salary_range}
                   placeholder="Salary Range"
                   className="input input-bordered bg-gray-200"
                   required
@@ -135,6 +143,7 @@ const Update = () => {
                   type="text"
                   name="jb_dsc"
                   placeholder="Job Description"
+                  defaultValue={jb_dsc}
                   className="input input-bordered bg-gray-200"
                   required
                 />
@@ -158,7 +167,7 @@ const Update = () => {
                   <span className="label-text">Application Deadline</span>
                 </label>
                 <DatePicker  className="input input-bordered bg-gray-200"
-                  required selected={startDate} onChange={(date) => setStartDate(date)} />
+                  required selected={deadlibeDate} onChange={(date) => setDeadtDate(date)} />
                 
               </div>
               <div className="form-control">
@@ -178,7 +187,7 @@ const Update = () => {
                 <input
                   className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]"
                   type="submit"
-                  value="ADD PRODUCT"
+                  value="Update"
                 />
               </div>
             </form>

@@ -13,6 +13,7 @@ const Addjob = () => {
     const {user}= useContext(AuthContext)
     console.log(user.displayName);
     const [startDate, setStartDate] = useState(new Date());
+    const [deadlibeDate, setDeadtDate] = useState(new Date());
     const handelAddjob=e=>{
         e.preventDefault()
         const form = e.target
@@ -160,7 +161,7 @@ const Addjob = () => {
                   <span className="label-text">Application Deadline</span>
                 </label>
                 <DatePicker  className="input input-bordered bg-gray-200"
-                  required selected={startDate} onChange={(date) => setStartDate(date)} />
+                  required selected={deadlibeDate} onChange={(date) => setDeadtDate(date)} />
                 
               </div>
               <div className="form-control">
