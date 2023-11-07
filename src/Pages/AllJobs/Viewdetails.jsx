@@ -4,12 +4,56 @@ import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Viewdetails = () => {
   const {user}= useContext(AuthContext)
     const details = useLoaderData()
     console.log(details);
-    const {_id,image,jb_dsc,job_title, salary_range,job_applicate_number}= details
+    const {_id,image,jb_dsc,job_title, salary_range,app_deadline,job_applicate_number}= details
+    
+    const handelSubmit=e=>{
+      e.preventDefault()
+      const form = e.target
+      const email = form.email.value 
+      const name = form.name.value 
+      const resume = form.resume.value
+     
+      const applyData = {email,name,resume}
+      console.log(applyData);
+      console.log(Date.now());
+      const times = Date.now()
+      const applyDate = new Date(times)
+      console.log(applyDate);
+      const deadlineDate=new Date(app_deadline)
+      console.log(deadlineDate);
+
+
+      
+     if (email!==user.email && applyDate<deadlineDate) {
+      fetch("http://localhost:5000/applyJobs", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(applyData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+               toast.success("You Are SuccessFully Apply")
+            }
+          });
+     }
+     else{
+      toast.error("You Dont have apply this job")
+     }
+
+      
+
+    }
+    
     return (
         <div>
             <Navbar></Navbar>
@@ -43,7 +87,7 @@ const Viewdetails = () => {
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
     <h3 className="font-bold text-lg">Apply Now!</h3>
-    <form>
+    <form onSubmit={handelSubmit}>
     <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
