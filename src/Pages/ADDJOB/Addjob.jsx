@@ -111,10 +111,10 @@ const Addjob = () => {
                   <option disabled selected>
                     Job Category
                   </option>
-                  <option value="onsite">Onsite</option>
-                  <option value="remote">Remote</option>
-                  <option value="part-time">Part Time</option>
-                  <option value="hybrid">Hybrid</option>
+                  <option value="Onsite">Onsite</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Part-time">Part Time</option>
+                  <option value="Hybrid">Hybrid</option>
                 </select>
               </div>
               <div className="form-control">
