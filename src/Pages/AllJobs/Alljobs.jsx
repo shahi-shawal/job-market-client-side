@@ -50,7 +50,7 @@ const Alljobs = () => {
                     </td>
                     <td>{jobtable.jb_post_date}</td>
                     <td>{jobtable.app_deadline}</td>
-                    <td>{jobtable.salary_range}</td>
+                    <td>${jobtable.salary_range}</td>
                     <th>
                      <Link to={`/jobs/${jobtable._id}`}> <button className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">View details</button></Link>
                     </th>
