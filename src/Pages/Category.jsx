@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BsCalendar2DateFill } from "react-icons/bs";
+import { GrUpdate } from "react-icons/gr";
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 const Category = () => {
@@ -31,18 +33,27 @@ const Category = () => {
           {allCat.map((category, index) => (
             <TabPanel key={index}>
               {category.job_type === 'All jobs' ? (
-                <div className="grid grid-cols-3 mt-5 mb-5">
+                <div className="grid grid-cols-3 p-5 mt-5 mb-5">
                   {type.map((job, jobIndex) => (
                     <div key={jobIndex} className="grid grid-cols-3">
                       <div className="card w-96 bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
     <img src={job.image} alt="Shoes" className="rounded-xl" />
   </figure>
-  <div className="card-body items-center text-center">
-    <h2 className="card-title">{job.job_title}</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions">
-      <button className="btn btn-primary">Buy Now</button>
+  <div className="flex flex-row flex-wrap gap-5 p-3">
+    <h2 className="card-title">Role: {job.job_title}</h2>
+    <p className='card-title'>Salary Range: ${job.salary_range
+}</p>
+    <div className='flex gap-3'>
+    <p className='flex justify-center items-center gap-1'><BsCalendar2DateFill />{job.jb_post_date}</p>
+    <p className='flex justify-center items-center gap-1'><GrUpdate /> {job.app_deadline
+}</p>
+    </div>
+    
+    <p>Applied:{job.job_applicate_number
+}</p>
+    <div className="card-actions mx-auto">
+      <button className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">View Details</button>
     </div>
   </div>
 </div>
@@ -51,12 +62,12 @@ const Category = () => {
                 </div>
               ) : (
                 // Display jobs for the selected category
-                <div className="grid grid-cols-3 mt-5 mb-5">
+                <div className="grid grid-cols-3 p-5 mt-5 mb-5">
                   {type
                     .filter(job => job.jb_category === category.job_type)
                     .map((job, jobIndex) => (
                       <div key={jobIndex} className="job-item">
-                        <h3></h3>
+                        
                         <div className="card w-96 bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
     <img src={job.image} alt="Shoes" className="rounded-xl" />
@@ -65,13 +76,15 @@ const Category = () => {
     <h2 className="card-title">Role: {job.job_title}</h2>
     <p className='card-title'>Salary Range: ${job.salary_range
 }</p>
-    <p>Posted Date: {job.jb_post_date}</p>
-    <p>Deadline Date: {job.app_deadline
+    <div className='flex gap-3'>
+    <p className='flex justify-center items-center gap-1'><BsCalendar2DateFill />{job.jb_post_date}</p>
+    <p className='flex justify-center items-center gap-1'><GrUpdate /> {job.app_deadline
 }</p>
+    </div>
     
     <p>Applied:{job.job_applicate_number
 }</p>
-    <div className="card-actions">
+    <div className="card-actions mx-auto">
       <button className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">View Details</button>
     </div>
   </div>
