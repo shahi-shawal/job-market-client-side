@@ -30,9 +30,10 @@ const Navbar = () => {
        
        <NavLink  to="/"><li><a>Home</a></li></NavLink>
        <NavLink to="/blog"><li><a>Blogs</a></li></NavLink>
+       <NavLink to="/alljobs"><li><a>All Jobs</a></li></NavLink>
        {
         user && <>
-        <NavLink to="/alljobs"><li><a>All Jobs</a></li></NavLink>
+       
        <NavLink to="/myjobs"><li><a>My Jobs</a></li></NavLink>
        <NavLink to="/appliedjobs"><li><a>Applied Jobs</a></li></NavLink>
        <NavLink to="/addjob"><li><a>Add a job</a></li></NavLink>

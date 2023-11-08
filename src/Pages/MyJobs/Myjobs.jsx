@@ -61,7 +61,8 @@ Swal.fire({
       >
         <div className="py-20 px-20 text-3xl font-bold text-white">My Jobs</div>
         <div className="grid grid-cols-3 gap-5 mb-5 mt-4">
-          {myfilterJob.map((myj) => (
+         {
+          myfilterJob.length<0? <>{myfilterJob.map((myj) => (
             <div key={myj.id} className="card w-96 bg-base-100 shadow-xl">
               <figure className="px-10 pt-10">
                 <img src={myj.image} alt="Shoes" className="rounded-xl" />
@@ -79,13 +80,19 @@ Swal.fire({
                     Update
                   </button>
                   </Link>
-                  <button onClick={()=>handelDelete(`${myj._id}`)} className="btn btn-error text-white hover:bg-[#1CA774]">
+                  <button onClick={()=>handelDelete(`${myj._id}`)} className="btn btn-error text-white hover:bg-[#1e7e5b]">
                     Delete
                   </button>
                 </div>
               </div>
             </div>
-          ))}
+
+          ))}</>
+
+          : <div className="flex items-center justify-center mt-10"><h1 className=" text-[#1e7e5b] text-3xl font-bold"> you have no  Job Post</h1></div>
+          
+          
+         }
         </div>
         <Footer></Footer>
       </div>

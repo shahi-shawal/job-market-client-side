@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Footer from "../../Components/Shared/Footer/Footer";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import { AuthContext } from "../../Provider/AuthProvider";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-hot-toast";
 

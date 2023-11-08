@@ -30,8 +30,8 @@ const Category = () => {
     }
   }
   return (
-    <div className="bg-gray-200">
-      <h1 className="text-center text-3xl font-bold mt-10 mb-5 p-5">
+    <div className="bg-[#E8F6F1]">
+      <h1 className="text-center text-3xl font-bold mt-5 mb-5 p-5">
         Jobs Category
       </h1>
       <Tabs
