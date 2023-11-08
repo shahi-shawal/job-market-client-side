@@ -9,6 +9,7 @@ import Viewdetails from "../Pages/AllJobs/Viewdetails";
 import Myjobs from "../Pages/MyJobs/Myjobs";
 import Update from "../Pages/MyJobs/Update";
 import Category from "../Pages/Category";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 const routes =  createBrowserRouter([{
@@ -29,7 +30,7 @@ const routes =  createBrowserRouter([{
     },
     {
         path:"/jobs/:id",
-        element:<Viewdetails></Viewdetails>,
+        element:<PrivateRoutes><Viewdetails></Viewdetails></PrivateRoutes>,
         loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
     },
     {
