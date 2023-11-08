@@ -18,8 +18,9 @@ const Viewdetails = () => {
       const email = form.email.value 
       const name = form.name.value 
       const resume = form.resume.value
+      const jobId = form.jobPostingId.value
      
-      const applyData = {email,name,resume}
+      const applyData = {email,name,resume,jobId}
       console.log(applyData);
       console.log(Date.now());
       const times = Date.now()
@@ -28,9 +29,12 @@ const Viewdetails = () => {
       const deadlineDate=new Date(app_deadline)
       console.log(deadlineDate);
 
-
+  
       
-     if (email!==user.email && applyDate<deadlineDate) {
+     if (email===user.email){
+       toast.error("You apply your Own post")
+     }
+    else if(applyDate<deadlineDate) {
       fetch("http://localhost:5000/applyJobs", {
           method: "POST",
           headers: {
@@ -45,9 +49,30 @@ const Viewdetails = () => {
                toast.success("You Are SuccessFully Apply")
             }
           });
+
+
+
+      
+          // fetch(`http://localhost:5000/jobs/${_id}`, {
+          //   method: "PATCH",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify(job_applicate_number),
+          // })
+          //   .then((res) => res.json())
+          //   .then((data) => {
+          //     console.log(data);
+          //     if (data.modifiedCount) {
+          //        toast.success("Updated successFully")
+          //     }
+          //   });
+
+
+        
      }
      else{
-      toast.error("You Dont have apply this job")
+      toast.error("Deadline is Over")
      }
 
       
@@ -126,6 +151,14 @@ const Viewdetails = () => {
                   required
                 />
               </div>
+    
+                <input
+                  type="hidden"
+                  name="jobPostingId"
+                  value={_id}
+                />
+
+
           <input className="btn bg-[#1CA774] text-white hover:bg-[#1CA774] mt-6" type="submit" value="Submit" />
     </form>
     <div className="modal-action">
