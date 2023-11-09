@@ -115,7 +115,7 @@ const Viewdetails = () => {
         }}
         className="mt-5 py-2"
       >
-        <div className="py-20 px-20 text-3xl font-bold text-white">
+        <div className="py-2 px-2 lg:py-20 lg:px-20 lg:text-3xl font-bold text-white">
           {job_title}
         </div>
       </div>
@@ -126,7 +126,7 @@ const Viewdetails = () => {
   <div className="card-body items-center text-center">
     <h2 className="card-title">Role:{job_title}</h2>
     <p>Salary: ${salary_range}</p>
-    <p>{job_applicate_number}</p>
+    <p>Applied:{job_applicate_number}</p>
     <p>{jb_dsc}</p>
     <div className="card-actions">
       <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">Apply Now</button>

@@ -49,7 +49,7 @@ const AppliedJobs = () => {
         }}
         className="mt-5 py-2"
       >
-        <div className="py-20 px-20 text-3xl font-bold text-white">
+        <div className="py-2 px-2 lg:py-20 lg:px-20 lg:text-3xl font-bold text-white">
           Applied Jobs
         </div>
       </div>

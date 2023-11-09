@@ -72,8 +72,8 @@ const Myjobs = () => {
         }}
         className="mt-5 py-2"
       >
-        <div className="py-20 px-20 text-3xl font-bold text-white">My Jobs</div>
-        <div className="grid grid-cols-3 gap-5 mb-5 mt-4">
+        <div className="py-2 px-2 lg:py-20 lg:px-20 lg:text-3xl font-bold text-white">My Jobs</div>
+        <div className="grid grid-cols-3 gap-5 mb-5 mt-10 lg:mt-4">
          {
           myfilterJob.length>0? <>{myfilterJob.map((myj) => (
             <div key={myj.id} className="card w-96 bg-base-100 shadow-xl">
