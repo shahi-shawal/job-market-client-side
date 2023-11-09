@@ -5,8 +5,11 @@ import Footer from "../../Components/Shared/Footer/Footer";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
-
+import  { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { Helmet } from "react-helmet-async";
 const Viewdetails = () => {
+  const form = useRef();
   const {user}= useContext(AuthContext)
     const details = useLoaderData()
     console.log(details);
@@ -25,6 +28,11 @@ const Viewdetails = () => {
       const app_deadline = form.app_deadline.value
       const  image= form.image.value
      
+      
+
+
+
+
       const applyData = {email,name,resume,jobId,job_title, jb_category,image, app_deadline, salary_range}
       console.log(applyData);
       console.log(Date.now());
@@ -53,6 +61,12 @@ const Viewdetails = () => {
             if (data.insertedId) {
                toast.success("You Are SuccessFully Apply")
             }
+            emailjs.sendForm('service_qwfkttg', 'template_di0ek5p', form.current, 'tUlX156MUYOs2Sp12')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
           });
 
 
@@ -81,9 +95,15 @@ const Viewdetails = () => {
       
 
     }
-    
+   
+
+ 
+
     return (
         <div>
+        <Helmet>
+        <title>JOBS MARKET | View Details</title>
+      </Helmet>
             <Navbar></Navbar>
             <div
         style={{
@@ -115,7 +135,7 @@ const Viewdetails = () => {
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
     <h3 className="font-bold text-lg">Apply Now!</h3>
-    <form onSubmit={handelSubmit}>
+    <form  ref={form}  onSubmit={handelSubmit}>
     <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

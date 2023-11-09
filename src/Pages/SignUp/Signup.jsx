@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
 
@@ -61,6 +62,9 @@ const Signup = () => {
 
     return (
         <div>
+          <Helmet>
+        <title>JOBS MARKET | Sign Up</title>
+      </Helmet>
       <Navbar></Navbar>
       <div
         style={{

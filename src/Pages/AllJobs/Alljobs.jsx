@@ -3,6 +3,7 @@ import Navbar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer/Footer";
 import img1 from "../../assets/Images/animatepng.png";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 const Alljobs = () => {
     const alljobs= useLoaderData()
     console.log(alljobs);
@@ -20,6 +21,9 @@ const Alljobs = () => {
     }
     return (
         <div>
+          <Helmet>
+        <title>JOBS MARKET | All Jobs</title>
+      </Helmet>
             <Navbar></Navbar>
             <div
         style={{

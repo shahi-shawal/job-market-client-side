@@ -6,6 +6,7 @@ import Footer from "../../Components/Shared/Footer/Footer";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
 import { toast } from "react-hot-toast"; 
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -56,6 +57,9 @@ const Login = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>JOBS MARKET | Log In</title>
+      </Helmet>
       <Navbar></Navbar>
       <div
         style={{

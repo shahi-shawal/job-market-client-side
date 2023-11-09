@@ -5,6 +5,7 @@ import img1 from "../../assets/Images/animatepng.png";
 import { AuthContext } from "../../Provider/AuthProvider";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Addjob = () => {
@@ -48,6 +49,9 @@ const Addjob = () => {
         
   return (
     <div>
+      <Helmet>
+        <title>JOBS MARKET | Add Job</title>
+      </Helmet>
       <Navbar></Navbar>
       <div
         style={{

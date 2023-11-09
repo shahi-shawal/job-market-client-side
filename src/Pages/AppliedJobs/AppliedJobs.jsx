@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import ApplyCard from "./ApplyCard";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
+import { Helmet } from "react-helmet-async";
 
 
 const AppliedJobs = () => {
@@ -34,6 +35,9 @@ const AppliedJobs = () => {
   
     return (
         <div className="bg-[#E8F6F1]">
+          <Helmet>
+        <title>JOBS MARKET | Applied Job</title>
+      </Helmet>
             <Navbar></Navbar>
             <div
         style={{

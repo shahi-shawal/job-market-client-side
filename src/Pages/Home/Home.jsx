@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import OurTrustsection from "../../Components/Section/OurTrustsection";
 import TopCompanis from "../../Components/Section/TopCompanis";
 import Banner from "../../Components/Shared/Banner/Banner";
@@ -9,6 +10,10 @@ import Category from "../Category";
 const Home = () => {
     return (
         <div className="bg-[#E8F6F1]">
+            <Helmet>
+        <title>JOBS MARKET | HOME</title>
+        
+      </Helmet>
             <Navbar></Navbar>
             <Banner></Banner>
             <TopCompanis></TopCompanis>
