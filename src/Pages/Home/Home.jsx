@@ -1,3 +1,4 @@
+import OurTrustsection from "../../Components/Section/OurTrustsection";
 import TopCompanis from "../../Components/Section/TopCompanis";
 import Banner from "../../Components/Shared/Banner/Banner";
 import Footer from "../../Components/Shared/Footer/Footer";
@@ -12,6 +13,7 @@ const Home = () => {
             <Banner></Banner>
             <TopCompanis></TopCompanis>
             <Category></Category>
+            <OurTrustsection></OurTrustsection>
             <Footer></Footer>
         </div>
     );
