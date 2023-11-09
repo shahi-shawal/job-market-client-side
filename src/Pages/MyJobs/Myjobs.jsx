@@ -22,27 +22,30 @@ const Myjobs = () => {
     fetch(`http://localhost:5000/jobs/${_id}`, {
         method: "DELETE",
       })
-Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}) 
-.then((res) => res.json())
 
+.then((res) => res.json())
+ 
 .then((data) => {
     if (data.deletedCount > 0) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      })
     Swal.fire({
       title: "Deleted!",
       text: "Your file has been deleted.",
       icon: "success"
+     
     });
     const remaing = jobsstate.filter((jobdelete)=> jobdelete._id !==_id)
     setJobsState(remaing)
   }
+ 
 });
 
   }
@@ -62,7 +65,7 @@ Swal.fire({
         <div className="py-20 px-20 text-3xl font-bold text-white">My Jobs</div>
         <div className="grid grid-cols-3 gap-5 mb-5 mt-4">
          {
-          myfilterJob.length<0? <>{myfilterJob.map((myj) => (
+          myfilterJob.length>0? <>{myfilterJob.map((myj) => (
             <div key={myj.id} className="card w-96 bg-base-100 shadow-xl">
               <figure className="px-10 pt-10">
                 <img src={myj.image} alt="Shoes" className="rounded-xl" />

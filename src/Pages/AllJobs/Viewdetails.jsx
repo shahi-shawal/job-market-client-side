@@ -10,7 +10,7 @@ const Viewdetails = () => {
   const {user}= useContext(AuthContext)
     const details = useLoaderData()
     console.log(details);
-    const {_id,image,jb_dsc,job_title, salary_range,app_deadline,job_applicate_number}= details
+    const {_id,image,jb_dsc,job_title,jb_category, salary_range,app_deadline,job_applicate_number}= details
     
     const handelSubmit=e=>{
       e.preventDefault()
@@ -19,8 +19,13 @@ const Viewdetails = () => {
       const name = form.name.value 
       const resume = form.resume.value
       const jobId = form.jobPostingId.value
+      const job_title = form.job_title.value
+      const jb_category = form.jb_category.value
+      const salary_range = form.salary_range.value
+      const app_deadline = form.app_deadline.value
+      const  image= form.image.value
      
-      const applyData = {email,name,resume,jobId}
+      const applyData = {email,name,resume,jobId,job_title, jb_category,image, app_deadline, salary_range}
       console.log(applyData);
       console.log(Date.now());
       const times = Date.now()
@@ -63,9 +68,7 @@ const Viewdetails = () => {
           //   .then((res) => res.json())
           //   .then((data) => {
           //     console.log(data);
-          //     if (data.modifiedCount) {
-          //        toast.success("Updated successFully")
-          //     }
+
           //   });
 
 
@@ -156,6 +159,31 @@ const Viewdetails = () => {
                   type="hidden"
                   name="jobPostingId"
                   value={_id}
+                />
+                <input
+                  type="hidden"
+                  name="job_title"
+                  value={job_title}
+                />
+                <input
+                  type="hidden"
+                  name="jb_category"
+                  value={jb_category}
+                />
+                <input
+                  type="hidden"
+                  name="salary_range"
+                  value={salary_range}
+                />
+                <input
+                  type="hidden"
+                  name="app_deadline"
+                  value={app_deadline}
+                />
+                <input
+                  type="hidden"
+                  name="image"
+                  value={image}
                 />
 
 
