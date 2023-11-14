@@ -22,9 +22,9 @@ const AppliedJobs = () => {
 
     
     const [allCat, setAllCat] = useState([]);
-    const [selected, setSelected] = useState(allCat);
+    const [selected, setSelected] = useState('All jobs');
     useEffect(() => {
-        fetch("http://localhost:5000/jobstype")
+        fetch("https://job-server-as-11.vercel.app/jobstype")
           .then((res) => res.json())
           .then((data) => setAllCat(data));
       }, []);
@@ -60,7 +60,7 @@ const AppliedJobs = () => {
           </option>
         ))}
       </select>
-            <div className="grid grid-cols-3 p-4">
+            <div className="grid grid-cols-1 mx-auto lg:grid-cols-3 p-4">
                 {
                    selected ==="All jobs"?(myJobs.map((jobs)=><ApplyCard key={jobs.id} jobs={jobs}></ApplyCard>)):( myJobs.filter((jb)=> jb.jb_category === selected).map((jobs)=><ApplyCard key={jobs.id} jobs={jobs}></ApplyCard>))
                 }

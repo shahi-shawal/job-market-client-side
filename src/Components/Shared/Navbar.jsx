@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
-import logo from "../../assets/Images/logo.png"
+import logo from "../../assets/Images/LOGO2.png"
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
@@ -41,13 +41,13 @@ const Navbar = () => {
        }
     </>
     return (
-        <div>
+        <div className="">
           
-            <div className={`drawer ${fix}`}>
+            <div className={` drawer ${fix}`}>
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
     {/* Navbar */}
-    <div className={`w-full navbar `}>
+    <div className={`w-full navbar h-20 `}>
     <Toaster />
       <div className=" ">
       <div className="flex-none lg:hidden">
@@ -56,7 +56,7 @@ const Navbar = () => {
         </label>
       </div> 
       <div className="flex-1 px-4 mx-2">
-        <img className="w-[150px] h-[120px]" src={logo} />
+        <img className="" src={logo} />
         </div>
       
       <div className="flex-none hidden lg:block">

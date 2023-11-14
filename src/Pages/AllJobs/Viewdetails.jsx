@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import  { useRef } from 'react';
@@ -10,11 +10,23 @@ import emailjs from '@emailjs/browser';
 import { Helmet } from "react-helmet-async";
 const Viewdetails = () => {
   const form = useRef();
+  const [disable, setDisable]= useState(false)
   const {user}= useContext(AuthContext)
     const details = useLoaderData()
     console.log(details);
-    const {_id,image,jb_dsc,job_title,jb_category, salary_range,app_deadline,job_applicate_number}= details
+    const {_id,image,jb_dsc,posted_name,job_title,jb_category, salary_range,app_deadline,job_applicate_number}= details
     
+
+    const handelapply =()=>{
+      if (posted_name===user.displayName){
+           setDisable(true)
+        toast.error("You can not apply your Own post")
+     
+      }
+      else{
+        setDisable(false)
+      }
+    }
     const handelSubmit=e=>{
       e.preventDefault()
       const form = e.target
@@ -42,13 +54,11 @@ const Viewdetails = () => {
       const deadlineDate=new Date(app_deadline)
       console.log(deadlineDate);
 
-  
-      
-     if (email===user.email){
-       toast.error("You apply your Own post")
-     }
-    else if(applyDate<deadlineDate) {
-      fetch("http://localhost:5000/applyJobs", {
+      if (posted_name===user.displayName){
+     toast.error("You can not apply your Own post")
+      }
+      else if(applyDate<deadlineDate) {
+      fetch("https://job-server-as-11.vercel.app/applyJobs", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -72,7 +82,7 @@ const Viewdetails = () => {
 
 
       
-          // fetch(`http://localhost:5000/jobs/${_id}`, {
+          // fetch(`https://job-server-as-11.vercel.app/jobs/${_id}`, {
           //   method: "PATCH",
           //   headers: {
           //     "Content-Type": "application/json",
@@ -128,13 +138,13 @@ const Viewdetails = () => {
     <p>Salary: ${salary_range}</p>
     <p>Applied:{job_applicate_number}</p>
     <p>{jb_dsc}</p>
-    <div className="card-actions">
-      <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">Apply Now</button>
+    <div onClick={handelapply}  className="card-actions">
+      <button disabled={disable} onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">Apply Now</button>
     </div>
     {/* Open the modal using document.getElementById('ID').showModal() method */}
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
   <div className="modal-box">
-    <h3 className="font-bold text-lg">Apply Now!</h3>
+    <h3   className="font-bold text-lg">Apply Now!</h3>
     <form  ref={form}  onSubmit={handelSubmit}>
     <div className="form-control">
                 <label className="label">

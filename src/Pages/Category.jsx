@@ -10,7 +10,7 @@ const Category = () => {
     const {user}=useContext(AuthContext)
   const [type, setType] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/jobs")
+    fetch("https://job-server-as-11.vercel.app/jobs")
       .then((res) => res.json())
       .then((data) => setType(data));
   }, []);
@@ -18,7 +18,7 @@ const Category = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [allCat, setAllCat] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/jobstype")
+    fetch("https://job-server-as-11.vercel.app/jobstype")
       .then((res) => res.json())
       .then((data) => setAllCat(data));
   }, []);

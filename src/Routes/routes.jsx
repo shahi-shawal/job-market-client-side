@@ -11,6 +11,7 @@ import Update from "../Pages/MyJobs/Update";
 import PrivateRoutes from "./PrivateRoutes";
 import Error from "../Pages/Error/Error";
 import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
+import Blogs from "../Pages/Blogs/Blogs";
 
 
 const routes =  createBrowserRouter([{
@@ -22,33 +23,37 @@ const routes =  createBrowserRouter([{
         element:<Home></Home>
     },
     {
+        path:'/blog',
+        element:<Blogs></Blogs>
+    },
+    {
         path:"/addjob",
-        element:<Addjob></Addjob>
+        element:<PrivateRoutes><Addjob></Addjob></PrivateRoutes>
     },
     {
         path:"/alljobs",
         element:<Alljobs></Alljobs>,
-        loader:()=>fetch("http://localhost:5000/jobs")
+        loader:()=>fetch("https://job-server-as-11.vercel.app/jobs")
     },
     {
         path:"/jobs/:id",
         element:<PrivateRoutes><Viewdetails></Viewdetails></PrivateRoutes>,
-        loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`)
     },
     {
         path:"/myjobs",
         element:<PrivateRoutes><Myjobs></Myjobs></PrivateRoutes>,
-        loader:()=> fetch("http://localhost:5000/jobs")
+        loader:()=> fetch("https://job-server-as-11.vercel.app/jobs")
     },
     {
         path:"/appliedjobs",
-        element:<AppliedJobs></AppliedJobs>,
-        loader:()=>fetch("http://localhost:5000/applyjobs")
+        element:<PrivateRoutes><AppliedJobs></AppliedJobs></PrivateRoutes>,
+        loader:()=>fetch("https://job-server-as-11.vercel.app/applyjobs")
     },
     {
         path:"myjobs/update/:id",
         element:<Update></Update>,
-        loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`)
+        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`)
     },
     {
         path:"/login",
