@@ -1,8 +1,9 @@
-# React + Vite
+LIVE LINK: https://jobmarket-3967f.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Website Feature:
+1. User search his job
+2. user apply his job feature
+3. When user apply the job applicate number increase
+4. Register user post a job
+5. Register user delete/update his job post
+6. when deadline is over user cannot apply the job

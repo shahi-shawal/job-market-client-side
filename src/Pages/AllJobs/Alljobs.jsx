@@ -12,7 +12,7 @@ const Alljobs = () => {
    
     console.log(jobs)
     useEffect(()=>{
-       fetch(`http://localhost:5000/jobs?search=${search}`)
+       fetch(`https://job-server-as-11.vercel.app/jobs?search=${search}`)
        .then(res=> res.json())
        .then(data=>setJobs(data))
     },[search])

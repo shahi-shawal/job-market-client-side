@@ -39,22 +39,22 @@ const routes =  createBrowserRouter([{
     {
         path:"/jobs/:id",
         element:<PrivateRoutes><Viewdetails></Viewdetails></PrivateRoutes>,
-        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`)
+        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`,{credentials:'include'})
     },
     {
         path:"/myjobs",
         element:<PrivateRoutes><Myjobs></Myjobs></PrivateRoutes>,
-        loader:()=> fetch("http://localhost:5000/jobs")
+        loader:()=> fetch("https://job-server-as-11.vercel.app/jobs")
     },
     {
         path:"/appliedjobs",
         element:<PrivateRoutes><AppliedJobs></AppliedJobs></PrivateRoutes>,
-        loader:()=>fetch("http://localhost:5000/applyjobs", {credentials:'include'})
+        loader:()=>fetch("https://job-server-as-11.vercel.app/applyjobs", {credentials:'include'})
     },
     {
         path:"myjobs/update/:id",
         element:<Update></Update>,
-        loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`, {credentials:'include'})
+        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`, {credentials:'include'})
     },
     {
         path:"/resume",

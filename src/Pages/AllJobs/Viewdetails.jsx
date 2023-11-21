@@ -49,7 +49,7 @@ const Viewdetails = () => {
      toast.error("You can not apply your Own post")
       }
       else if(applyDate<deadlineDate) {
-      fetch("http://localhost:5000/applyJobs", {
+      fetch("https://job-server-as-11.vercel.app/applyJobs", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const Viewdetails = () => {
 
 
       
-          fetch(`http://localhost:5000/jobs/${_id}`, {
+          fetch(`https://job-server-as-11.vercel.app/jobs/${_id}`,{
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -120,11 +120,11 @@ const Viewdetails = () => {
           {job_title}
         </div>
       </div>
-      <div className="card max-w-5xl mx-auto bg-base-100 shadow-xl">
-  <figure className="px-10 pt-10">
-    <img src={image} alt={job_title} className="rounded-xl" />
+      <div className="card max-w-5xl flex lg:flex-row justify-center items-center flex-col mx-auto bg-base-100 mt-20 mb-10">
+  <figure className="flex-1  px-10 pt-10">
+    <img src={image} alt={job_title} className="w-[600px] h-auto rounded-xl" />
   </figure>
-  <div className="card-body items-center text-center">
+  <div className="flex-1 card-body items-center text-center">
     <h2 className="card-title">Role:{job_title}</h2>
     <p>Salary: ${salary_range}</p>
     <p>Applied:{job_applicate_number}</p>
