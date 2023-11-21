@@ -2,22 +2,30 @@ import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer/Footer";
 import img1 from "../../assets/Images/animatepng.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 const Alljobs = () => {
     const alljobs= useLoaderData()
     console.log(alljobs);
-    const [jobs, setJobs]= useState(alljobs)
+    const [jobs, setJobs]= useState([])
+    const [search, setSearch]= useState('')
    
+    console.log(jobs)
+    useEffect(()=>{
+       fetch(`http://localhost:5000/jobs?search=${search}`)
+       .then(res=> res.json())
+       .then(data=>setJobs(data))
+    },[search])
+
     // const {job_title, salary_range}= alljobs
     console.log(jobs);
     const handelSearch=(e)=>{
       e.preventDefault()
       const search =e.target.searchInput.value 
-      console.log(search);
-     const searchjb = jobs.filter((jb)=> jb.job_title=== search)
-     setJobs(searchjb);
-     console.log(searchjb);
+      setSearch(search);
+    //  const searchjb = jobs.filter((jb)=> jb.job_title=== search)
+    //  setJobs(searchjb);
+    //  console.log(searchjb);
     }
     return (
         <div>

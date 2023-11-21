@@ -5,15 +5,23 @@ import swap4 from "../../assets/Images/l-7.png"
 import swap5 from "../../assets/Images/l-8.png"
 import swap6 from "../../assets/Images/l-9.png"
 import { GrLocation } from 'react-icons/gr';
+import {useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const TopCompanis = () => {
-    
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
     return (
-        <div className="bg-white">
-             <div className="text-center">
+        <div data-aos="fade-up" className="bg-white">
+             <div  className="mx-auto text-center">
                 <h1 className="text-3xl font-bold mb-2">Broswe Top Companies</h1>
                 <p>Explore Top Companies and find your job</p>
                 </div>
-                <div className="p-4 grid grid-cols-1 lg:grid-cols-3 mb-3">
+                <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="p-4 mx-auto grid grid-cols-1 lg:grid-cols-3 mb-3">
                 <div className="card w-80 h-auto bg-base-100 border mb-3">
                 <figure className="px-10 pt-10">
                   <img src={swap} alt="Shoes" className="rounded-xl w-40 h-40" />
@@ -27,7 +35,7 @@ const TopCompanis = () => {
                   </div>
                 </div>
               </div>
-                <div className="card w-80 h-auto bg-base-100 border mb-3">
+                <div  className="card w-80 h-auto bg-base-100 border mb-3">
                 <figure className="px-10 pt-10">
                   <img src={swap2} alt="Shoes" className="rounded-xl w-40 h-40" />
                 </figure>
@@ -40,7 +48,10 @@ const TopCompanis = () => {
                   </div>
                 </div>
               </div>
-                <div className="card w-80 h-auto bg-base-100 border mb-3">
+                <div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500" className="card w-80 h-auto bg-base-100 border mb-3">
                 <figure className="px-10 pt-10">
                   <img src={swap3} alt="Shoes" className="rounded-xl w-40 h-40" />
                 </figure>
@@ -53,7 +64,7 @@ const TopCompanis = () => {
                   </div>
                 </div>
               </div>
-                <div className="card w-80 h-auto bg-base-100 border">
+                <div  className="card w-80 h-auto bg-base-100 border">
                 <figure className="px-10 pt-10">
                   <img src={swap4} alt="Shoes" className="rounded-xl w-40 h-40" />
                 </figure>
@@ -66,7 +77,7 @@ const TopCompanis = () => {
                   </div>
                 </div>
               </div>
-                <div className="card w-80 h-auto bg-base-100 border">
+                <div  className="card w-80 h-auto bg-base-100 border">
                 <figure className="px-10 pt-10">
                   <img src={swap5} alt="Shoes" className="rounded-xl w-40 h-40" />
                 </figure>
@@ -79,7 +90,10 @@ const TopCompanis = () => {
                   </div>
                 </div>
               </div>
-                <div className="card w-80 h-auto bg-base-100 border">
+                <div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500" className="card w-80 h-auto bg-base-100 border">
                 <figure className="px-10 pt-10">
                   <img src={swap6} alt="Shoes" className="rounded-xl w-40 h-40" />
                 </figure>

@@ -14,7 +14,7 @@ const Home = () => {
         <title>JOBS MARKET | HOME</title>
         
       </Helmet>
-            <Navbar></Navbar>
+      <Navbar></Navbar>
             <Banner></Banner>
             <TopCompanis></TopCompanis>
             <Category></Category>

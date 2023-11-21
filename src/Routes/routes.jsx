@@ -12,6 +12,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Error from "../Pages/Error/Error";
 import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
 import Blogs from "../Pages/Blogs/Blogs";
+import CreateResume from "../Pages/Resume/CreateResume";
 
 
 const routes =  createBrowserRouter([{
@@ -43,17 +44,21 @@ const routes =  createBrowserRouter([{
     {
         path:"/myjobs",
         element:<PrivateRoutes><Myjobs></Myjobs></PrivateRoutes>,
-        loader:()=> fetch("https://job-server-as-11.vercel.app/jobs")
+        loader:()=> fetch("http://localhost:5000/jobs")
     },
     {
         path:"/appliedjobs",
         element:<PrivateRoutes><AppliedJobs></AppliedJobs></PrivateRoutes>,
-        loader:()=>fetch("https://job-server-as-11.vercel.app/applyjobs")
+        loader:()=>fetch("http://localhost:5000/applyjobs", {credentials:'include'})
     },
     {
         path:"myjobs/update/:id",
         element:<Update></Update>,
-        loader:({params})=>fetch(`https://job-server-as-11.vercel.app/jobs/${params.id}`)
+        loader:({params})=>fetch(`http://localhost:5000/jobs/${params.id}`, {credentials:'include'})
+    },
+    {
+        path:"/resume",
+        element:<CreateResume></CreateResume>
     },
     {
         path:"/login",

@@ -3,13 +3,20 @@ import ava1 from "../../../assets/Images/avatar-1.jpg";
 import ava2 from "../../../assets/Images/avatar-2.jpg";
 import ava3 from "../../../assets/Images/avatar-3.jpg";
 import { FaShare } from "react-icons/fa";
+import {useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Banner = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <div>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img src={banner} className="w-auto lg:max-w-xl rounded-lg" />
-          <div>
+          <img data-aos="fade-left" src={banner} className="w-auto lg:max-w-xl rounded-lg" />
+          <div data-aos="fade-right">
             <h1 className="text-5xl font-bold text-[#009868]">
               Your Job Here
             </h1>

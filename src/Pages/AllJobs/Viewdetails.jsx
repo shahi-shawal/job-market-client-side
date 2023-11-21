@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Navbar from "../../Components/Shared/Navbar";
 import img1 from "../../assets/Images/animatepng.png";
 import Footer from "../../Components/Shared/Footer/Footer";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import  { useRef } from 'react';
@@ -10,23 +10,12 @@ import emailjs from '@emailjs/browser';
 import { Helmet } from "react-helmet-async";
 const Viewdetails = () => {
   const form = useRef();
-  const [disable, setDisable]= useState(false)
   const {user}= useContext(AuthContext)
     const details = useLoaderData()
     console.log(details);
     const {_id,image,jb_dsc,posted_name,job_title,jb_category, salary_range,app_deadline,job_applicate_number}= details
     
 
-    const handelapply =()=>{
-      if (posted_name===user.displayName){
-           setDisable(true)
-        toast.error("You can not apply your Own post")
-     
-      }
-      else{
-        setDisable(false)
-      }
-    }
     const handelSubmit=e=>{
       e.preventDefault()
       const form = e.target
@@ -39,13 +28,15 @@ const Viewdetails = () => {
       const salary_range = form.salary_range.value
       const app_deadline = form.app_deadline.value
       const  image= form.image.value
+      const job_applicate_number= form.job_applicate_number.value
+
      
       
 
 
 
 
-      const applyData = {email,name,resume,jobId,job_title, jb_category,image, app_deadline, salary_range}
+      const applyData = {email,name,resume,job_applicate_number,jobId,job_title, jb_category,image, app_deadline, salary_range}
       console.log(applyData);
       console.log(Date.now());
       const times = Date.now()
@@ -58,7 +49,7 @@ const Viewdetails = () => {
      toast.error("You can not apply your Own post")
       }
       else if(applyDate<deadlineDate) {
-      fetch("https://job-server-as-11.vercel.app/applyJobs", {
+      fetch("http://localhost:5000/applyJobs", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -82,18 +73,18 @@ const Viewdetails = () => {
 
 
       
-          // fetch(`https://job-server-as-11.vercel.app/jobs/${_id}`, {
-          //   method: "PATCH",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify(job_applicate_number),
-          // })
-          //   .then((res) => res.json())
-          //   .then((data) => {
-          //     console.log(data);
+          fetch(`http://localhost:5000/jobs/${_id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(applyData),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
 
-          //   });
+            });
 
 
         
@@ -138,8 +129,8 @@ const Viewdetails = () => {
     <p>Salary: ${salary_range}</p>
     <p>Applied:{job_applicate_number}</p>
     <p>{jb_dsc}</p>
-    <div onClick={handelapply}  className="card-actions">
-      <button disabled={disable} onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">Apply Now</button>
+    <div  className="card-actions">
+      <button disabled={posted_name===user.displayName} onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-[#1CA774] text-white hover:bg-[#1CA774]">Apply Now</button>
     </div>
     {/* Open the modal using document.getElementById('ID').showModal() method */}
 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
@@ -194,6 +185,11 @@ const Viewdetails = () => {
                   type="hidden"
                   name="job_title"
                   value={job_title}
+                />
+                <input
+                  type="hidden"
+                  name="job_applicate_number"
+                  value={job_applicate_number}
                 />
                 <input
                   type="hidden"

@@ -1,25 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css"
 import logo from "../../assets/Images/LOGO2.png"
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 const Navbar = () => {
-      const [fix, setfix] = useState(false)
       const {user, logout}= useContext(AuthContext)
-      const strick= ()=>{
-         if (window.scrollY >=150) {
-          setfix(true)
-         }
-         else{
-          setfix(false)
-         }      
-      }
 
-      useEffect(() => {
-        console.log("hello");
-        window.addEventListener("scroll",strick)
-      }, []);
 
       const handellogOut=()=>{
         logout()
@@ -43,12 +30,11 @@ const Navbar = () => {
     return (
         <div className="">
           
-            <div className={` drawer ${fix}`}>
+            <div className="drawer">
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
     {/* Navbar */}
     <div className={`w-full navbar h-20 `}>
-    <Toaster />
       <div className=" ">
       <div className="flex-none lg:hidden">
         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
@@ -95,11 +81,12 @@ const Navbar = () => {
     <Link to="/login"> <button className="btn bg-[#1CA774] text-white font-bold hover:bg-[#1CA774]">Login</button></Link>
     </Link>
     }
-       
+         <Link to="/resume"> <button className="btn text-[#1CA774] bg-white font-bold hover:bg-[#1CA774] hover:text-white lg:mx-2">Create Resume</button></Link>
       </div>
+    
     </div>
   </div> 
-  <div className="drawer-side">
+  <div className="drawer-side z-[1]">
     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 min-h-full bg-base-200">
       {/* Sidebar content here */}

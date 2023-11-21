@@ -6,11 +6,14 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Category = () => {
+  
     const {user}=useContext(AuthContext)
   const [type, setType] = useState([]);
   useEffect(() => {
-    fetch("https://job-server-as-11.vercel.app/jobs")
+    fetch("http://localhost:5000/jobs")
       .then((res) => res.json())
       .then((data) => setType(data));
   }, []);
@@ -29,6 +32,10 @@ const Category = () => {
        toast.error("You have to log in first to view details")
     }
   }
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
     <div className="bg-[#E8F6F1]">
       <h1 className="text-center text-3xl font-bold mt-5 mb-5 p-5">
@@ -49,7 +56,7 @@ const Category = () => {
         {allCat.map((category, index) => (
           <TabPanel key={index}>
             {category.job_type === "All jobs" ? (
-              <div className="grid grid-cols-3 p-5 mt-5 mb-5">
+              <div data-aos="zoom-in" className="grid grid-cols-1 gap-4 lg:grid-cols-3 p-5 mt-5 mb-5">
                 {type.map((job, jobIndex) => (
                   <div key={jobIndex} className="grid grid-cols-3">
                     <div className="card w-96 bg-base-100 shadow-xl">
@@ -87,7 +94,7 @@ const Category = () => {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-3 p-5 mt-5 mb-5">
+              <div data-aos="zoom-in" className="grid grid-cols-1 gap-4 lg:grid-cols-3 p-5 mt-5 mb-5">
                 {type
                   .filter((job) => job.jb_category === category.job_type)
                   .map((job, jobIndex) => (
