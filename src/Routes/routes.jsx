@@ -13,6 +13,7 @@ import Error from "../Pages/Error/Error";
 import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
 import Blogs from "../Pages/Blogs/Blogs";
 import CreateResume from "../Pages/Resume/CreateResume";
+import Builder from "../Pages/Builder/Builder";
 
 
 const routes =  createBrowserRouter([{
@@ -35,6 +36,11 @@ const routes =  createBrowserRouter([{
         path:"/alljobs",
         element:<Alljobs></Alljobs>,
         loader:()=>fetch("https://job-server-as-11.vercel.app/jobs")
+    },
+    {
+        path:"/builder",
+        element:<Builder></Builder>,
+        loader:()=>fetch("http://localhost:5000/resume")
     },
     {
         path:"/jobs/:id",
