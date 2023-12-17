@@ -1,12 +1,16 @@
 import { toast } from "react-hot-toast";
 import Navbar from "../../Components/Shared/Navbar";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const CreateResume = () => {
+  const {user} = useContext(AuthContext)
     const handelResume=(e)=>{
        e.preventDefault()
        const form = e.target
+       const userEmail = user.email
        const name= form.name.value
         const email= form.email.value
         const image= form.image.value
@@ -18,11 +22,11 @@ const CreateResume = () => {
         const skills = form.skills.value
 
     const resume = {
-        name,email,image,f_name,m_name,address,education,experience,skills
+        name,userEmail,email,image,f_name,m_name,address,education,experience,skills
     }
     console.log(resume);
 
-  fetch("http://localhost:5000/resume",{
+  fetch("https://job-server-as-11.vercel.app/resume",{
     method:"POST",
     headers:{
         "Content-Type":"application/json"

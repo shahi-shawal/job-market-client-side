@@ -14,6 +14,8 @@ import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
 import Blogs from "../Pages/Blogs/Blogs";
 import CreateResume from "../Pages/Resume/CreateResume";
 import Builder from "../Pages/Builder/Builder";
+import Allresume from "../Pages/AllResume/Allresume";
+import ResDownload from "../Pages/AllResume/ResDownload";
 
 
 const routes =  createBrowserRouter([{
@@ -38,9 +40,19 @@ const routes =  createBrowserRouter([{
         loader:()=>fetch("https://job-server-as-11.vercel.app/jobs")
     },
     {
+        path:"/allresume",
+        element:<Allresume></Allresume>,
+        loader:()=>fetch("https://job-server-as-11.vercel.app/resume")
+    },
+    {
+        path:"/ResDown/:id",
+        element:<ResDownload></ResDownload>,
+        loader:({params})=>fetch(`http://localhost:5000/resume/${params.id}`)
+    },
+    {
         path:"/builder",
         element:<Builder></Builder>,
-        loader:()=>fetch("http://localhost:5000/resume")
+        loader:()=>fetch("https://job-server-as-11.vercel.app/resume")
     },
     {
         path:"/jobs/:id",
@@ -64,7 +76,7 @@ const routes =  createBrowserRouter([{
     },
     {
         path:"/resume",
-        element:<CreateResume></CreateResume>
+        element:<PrivateRoutes><CreateResume></CreateResume></PrivateRoutes>
     },
     {
         path:"/login",

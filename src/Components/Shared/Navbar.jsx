@@ -15,16 +15,17 @@ const Navbar = () => {
       
     const navlinks = <>
        
-       <NavLink  to="/"><li><a>Home</a></li></NavLink>
-       <NavLink to="/blog"><li><a>Blogs</a></li></NavLink>
-       <NavLink to="/alljobs"><li><a>All Jobs</a></li></NavLink>
-       <NavLink to="/builder"><li><a>Builder</a></li></NavLink>
+       <NavLink  to="/"><li><a className="hover:text-[#1CA774]">Home</a></li></NavLink>
+       <NavLink to="/blog"><li><a className="hover:text-[#1CA774]">Blogs</a></li></NavLink>
+       <NavLink to="/alljobs"><li><a className="hover:text-[#1CA774]">All Jobs</a></li></NavLink>
+       <NavLink to="/builder"><li><a className="hover:text-[#1CA774]">Builder</a></li></NavLink>
        {
         user && <>
        
-       <NavLink to="/myjobs"><li><a>My Jobs</a></li></NavLink>
-       <NavLink to="/appliedjobs"><li><a>Applied Jobs</a></li></NavLink>
-       <NavLink to="/addjob"><li><a>Add a job</a></li></NavLink>
+       <NavLink to="/myjobs"><li><a className="hover:text-[#1CA774]">My Jobs</a></li></NavLink>
+       <NavLink to="/allresume"><li><a className="hover:text-[#1CA774]">My Builder</a></li></NavLink>
+       <NavLink to="/appliedjobs"><li><a className="hover:text-[#1CA774]">Applied Jobs</a></li></NavLink>
+       <NavLink to="/addjob"><li><a className="hover:text-[#1CA774]">Add a job</a></li></NavLink>
        </>
        }
     </>
@@ -46,8 +47,8 @@ const Navbar = () => {
         <img className="" src={logo} />
         </div>
       
-      <div className="flex-none hidden lg:block">
-        <ul className="menu menu-horizontal" >
+      <div className="flex-none hidden text-center lg:block">
+        <ul className="menu-horizontal gap-3 " >
           {/* Navbar menu content here */}
           {navlinks}
         </ul>

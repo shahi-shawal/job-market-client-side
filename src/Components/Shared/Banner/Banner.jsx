@@ -15,8 +15,8 @@ const Banner = () => {
     <div>
       <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img data-aos="fade-left" src={banner} className="w-auto lg:max-w-xl rounded-lg" />
-          <div data-aos="fade-right">
+          <img data-aos="fade-left" src={banner} className="w-auto lg:w-[500px] rounded-lg" />
+          <div className="" data-aos="fade-right">
             <h1 className="text-5xl font-bold text-[#009868]">
               Your Job Here
             </h1>

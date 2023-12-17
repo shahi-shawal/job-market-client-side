@@ -14,7 +14,7 @@ const TopCompanis = () => {
     AOS.refresh();
   }, []);
     return (
-        <div data-aos="fade-up" className="bg-white">
+        <div  className="bg-white">
              <div  className="mx-auto text-center">
                 <h1 className="text-3xl font-bold mb-2">Broswe Top Companies</h1>
                 <p>Explore Top Companies and find your job</p>
